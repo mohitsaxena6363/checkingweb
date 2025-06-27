@@ -24,10 +24,10 @@
       100% { background-position: 0% 50%; }
     }
     .container {
-      max-width: 400px;
+      max-width: 480px;
       width: 100%;
       background: rgba(0, 0, 0, 0.65);
-      padding: 30px;
+      padding: 30px 20px;
       border-radius: 12px;
       text-align: center;
       box-shadow: 0 0 20px rgba(0,0,0,0.6);
@@ -38,8 +38,9 @@
       white-space: nowrap;
       overflow: hidden;
       border-right: 2px solid white;
-      display: inline-block;
+      display: block;
       width: 100%;
+      text-align: center;
     }
     button {
       padding: 12px;
@@ -69,7 +70,7 @@
     }
     @media (max-width: 480px) {
       .typing-text { font-size: 1.2em; }
-      .container { padding: 20px; }
+      .container { padding: 20px 15px; }
     }
   </style>
 </head>
@@ -86,7 +87,7 @@
   </div>
 
   <script>
-    // Typing Effect (Fast and Real-time)
+    // Typing animation (Fast and Real-time)
     let fullText = "Welcome to Mohit Saxena's Portal";
     let i = 0;
     const typingText = document.getElementById("typingText");
@@ -95,20 +96,20 @@
       if (i < fullText.length) {
         typingText.textContent += fullText.charAt(i);
         i++;
-        setTimeout(typeEffect, 40); // Fast typing speed
+        setTimeout(typeEffect, 40);
       } else {
         document.getElementById("continueBtn").style.display = "block";
       }
     }
     typeEffect();
 
-    // Preload Voices for No Delay
+    // Preload voices for no delay
     function preloadVoices() {
       window.speechSynthesis.getVoices();
     }
     preloadVoices();
 
-    // Show Login + Play Voice
+    // Show login and play welcome voice
     function showLogin() {
       const msg = new SpeechSynthesisUtterance("Welcome to Mohit Saxena's Portal");
       const voices = speechSynthesis.getVoices();
@@ -124,7 +125,7 @@
       document.getElementById("loginBox").style.display = "block";
     }
 
-    // Login Check
+    // Login check
     function login() {
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value.trim();
