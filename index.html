@@ -5,11 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mohit Saxena's Portal</title>
   <style>
+    :root {
+      --bg-dark: #0f2027;
+      --bg-light: #f0f0f0;
+      --text-dark: #ffffff;
+      --text-light: #000000;
+      --card-dark: rgba(0, 0, 0, 0.65);
+      --card-light: rgba(255, 255, 255, 0.9);
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d, #0f2027);
+      background: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d, var(--bg-dark));
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
       min-height: 100vh;
@@ -17,7 +26,13 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      color: white;
+      color: var(--text-dark);
+      transition: all 0.4s ease;
+    }
+
+    body.light-mode {
+      background: linear-gradient(-45deg, #ffffff, #eeeeee, #cccccc, var(--bg-light));
+      color: var(--text-light);
     }
 
     @keyframes gradientBG {
@@ -29,11 +44,17 @@
     .container {
       width: 100%;
       max-width: 500px;
-      background: rgba(0, 0, 0, 0.65);
+      background: var(--card-dark);
       padding: 30px 20px;
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(0,0,0,0.6);
       text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    body.light-mode .container {
+      background: var(--card-light);
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
     }
 
     .typing-text {
@@ -41,7 +62,6 @@
       margin-bottom: 25px;
       word-break: break-word;
       overflow-wrap: break-word;
-      text-align: center;
       line-height: 1.4;
       display: block;
       min-height: 60px;
@@ -84,9 +104,42 @@
         font-size: 1.2em;
       }
     }
+
+    /* 🌙 Final Ultra-Top Toggle Button CSS */
+    .toggle-theme {
+      position: fixed;
+      top: 0px;
+      right: 0px;
+      font-size: 1.5rem;
+      background: rgba(0,0,0,0.4);
+      color: white;
+      border: none;
+      border-radius: 0 0 0 12px;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .toggle-theme:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    body.light-mode .toggle-theme {
+      background: rgba(255,255,255,0.9);
+      color: black;
+    }
   </style>
 </head>
 <body>
+  <!-- 🌙 Toggle Button -->
+  <button class="toggle-theme" onclick="toggleTheme()">🌙</button>
+
+  <!-- 💬 Portal Box -->
   <div class="container">
     <div class="typing-text" id="typingText"></div>
     <button id="continueBtn" style="display:none;" onclick="showLogin()">Continue to Login</button>
@@ -146,6 +199,12 @@
       } else {
         alert("❌ Username या Password गलत है, कृपया फिर से कोशिश करें।");
       }
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("light-mode");
+      const toggleBtn = document.querySelector('.toggle-theme');
+      toggleBtn.textContent = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
     }
 
     window.speechSynthesis.onvoiceschanged = preloadVoices;
