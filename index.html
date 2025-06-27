@@ -39,7 +39,7 @@
       overflow: hidden;
       border-right: 2px solid white;
       width: 0;
-      animation: typing 3s steps(40, end) forwards;
+      animation: typing 4s steps(60, end) forwards;
     }
     @keyframes typing {
       to { width: 100%; }
@@ -107,7 +107,7 @@
     // Show button after typing animation
     setTimeout(() => {
       document.getElementById("continueBtn").style.display = "block";
-    }, 3200);
+    }, 4200);
 
     function showLogin() {
       // Voice
@@ -130,8 +130,7 @@
 
       if (username === "admin" && password === "1234") {
         alert("✅ लॉगिन सफल रहा! Redirect कर रहे हैं...");
-        window.open("https://sites.google.com/view/mohitkumar6355?usp=sharing", "_blank");
-
+        window.location.href = "https://sites.google.com/view/mohitkumar6355?usp=sharing";
       } else {
         alert("❌ Username या Password गलत है, कृपया फिर से कोशिश करें।");
       }
