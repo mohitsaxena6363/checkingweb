@@ -6,6 +6,7 @@
   <title>Mohit Saxena's Portal</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d, #0f2027);
@@ -18,11 +19,13 @@
       color: white;
       padding: 20px;
     }
+
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+
     .container {
       max-width: 480px;
       width: 100%;
@@ -32,16 +35,18 @@
       text-align: center;
       box-shadow: 0 0 20px rgba(0,0,0,0.6);
     }
+
     .typing-text {
       font-size: 1.5em;
       margin-bottom: 25px;
       white-space: nowrap;
-      overflow: hidden;
+      overflow: visible;
       border-right: 2px solid white;
-      display: block;
       width: 100%;
+      display: inline-block;
       text-align: center;
     }
+
     button {
       padding: 12px;
       font-size: 1em;
@@ -54,12 +59,17 @@
       width: 100%;
       transition: background 0.3s;
     }
-    button:hover { background-color: #0097a7; }
+
+    button:hover {
+      background-color: #0097a7;
+    }
+
     .login-box {
       display: none;
       margin-top: 20px;
       text-align: left;
     }
+
     input {
       width: 100%;
       padding: 10px;
@@ -68,9 +78,14 @@
       border-radius: 6px;
       border: none;
     }
+
     @media (max-width: 480px) {
-      .typing-text { font-size: 1.2em; }
-      .container { padding: 20px 15px; }
+      .typing-text {
+        font-size: 1.1em;
+      }
+      .container {
+        padding: 20px 15px;
+      }
     }
   </style>
 </head>
@@ -87,7 +102,7 @@
   </div>
 
   <script>
-    // Typing animation (Fast and Real-time)
+    // Fast typing animation
     let fullText = "Welcome to Mohit Saxena's Portal";
     let i = 0;
     const typingText = document.getElementById("typingText");
@@ -103,13 +118,12 @@
     }
     typeEffect();
 
-    // Preload voices for no delay
     function preloadVoices() {
       window.speechSynthesis.getVoices();
     }
+
     preloadVoices();
 
-    // Show login and play welcome voice
     function showLogin() {
       const msg = new SpeechSynthesisUtterance("Welcome to Mohit Saxena's Portal");
       const voices = speechSynthesis.getVoices();
@@ -125,7 +139,6 @@
       document.getElementById("loginBox").style.display = "block";
     }
 
-    // Login check
     function login() {
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value.trim();
