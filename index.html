@@ -14,7 +14,11 @@
       --card-light: rgba(255, 255, 255, 0.9);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -43,13 +47,14 @@
 
     .container {
       width: 100%;
-      max-width: 500px;
+      max-width: 400px;
       background: var(--card-dark);
-      padding: 30px 20px;
+      padding: 30px 25px;
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(0,0,0,0.6);
       text-align: center;
       transition: background 0.3s ease;
+      margin: auto;
     }
 
     body.light-mode .container {
@@ -60,23 +65,27 @@
     .typing-text {
       font-size: 1.5em;
       margin-bottom: 25px;
-      word-break: break-word;
-      overflow-wrap: break-word;
       line-height: 1.4;
-      display: block;
       min-height: 60px;
+      word-break: break-word;
+    }
+
+    button, input {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      font-size: 1em;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
     }
 
     button {
-      padding: 12px;
-      font-size: 1em;
-      border: none;
-      border-radius: 8px;
       background-color: #00bcd4;
       color: white;
       cursor: pointer;
-      margin-top: 15px;
-      width: 100%;
       transition: background 0.3s;
     }
 
@@ -90,22 +99,6 @@
       text-align: left;
     }
 
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      font-size: 1em;
-      border-radius: 6px;
-      border: none;
-    }
-
-    @media (max-width: 480px) {
-      .typing-text {
-        font-size: 1.2em;
-      }
-    }
-
-    /* 🌙 Final Ultra-Top Toggle Button CSS */
     .toggle-theme {
       position: fixed;
       top: 0px;
@@ -133,6 +126,20 @@
       background: rgba(255,255,255,0.9);
       color: black;
     }
+
+    @media (max-width: 480px) {
+      .typing-text {
+        font-size: 1.2em;
+      }
+
+      .container {
+        padding: 25px 15px;
+      }
+
+      button, input {
+        font-size: 1em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -152,7 +159,7 @@
   </div>
 
   <script>
-    let fullText = "Welcome to Mohit Saxena's Portal";
+    const fullText = "Welcome to Mohit Saxena's Portal";
     let i = 0;
     const typingText = document.getElementById("typingText");
 
@@ -193,7 +200,7 @@
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value.trim();
 
-      if (username === "admin" && password === "1234") {
+      if (username === "Mohit" && password === "1234@63") {
         alert("✅ लॉगिन सफल रहा! Redirect कर रहे हैं...");
         window.location.href = "https://sites.google.com/view/mohitkumar6355?usp=sharing";
       } else {
@@ -202,9 +209,16 @@
     }
 
     function toggleTheme() {
-      document.body.classList.toggle("light-mode");
+      const body = document.body;
       const toggleBtn = document.querySelector('.toggle-theme');
-      toggleBtn.textContent = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
+
+      if (body.classList.contains("light-mode")) {
+        body.classList.remove("light-mode");
+        toggleBtn.textContent = "🌙";
+      } else {
+        body.classList.add("light-mode");
+        toggleBtn.textContent = "☀️";
+      }
     }
 
     window.speechSynthesis.onvoiceschanged = preloadVoices;
