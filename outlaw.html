@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mohit Saxena's Portal</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d, #0f2027);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: white;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background: rgba(0,0,0,0.6);
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    .typing-text {
+      font-size: 1.5em;
+      margin-bottom: 25px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid white;
+      width: 0;
+      animation: typing 3s steps(40, end) forwards;
+    }
+    @keyframes typing {
+      to { width: 100%; }
+    }
+    #continueBtn {
+      padding: 12px 20px;
+      font-size: 1em;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #00bcd4;
+      color: white;
+      cursor: pointer;
+      display: none;
+      width: 100%;
+    }
+    #continueBtn:hover {
+      background-color: #008c9e;
+    }
+    .login-box {
+      display: none;
+      margin-top: 20px;
+      text-align: left;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 1em;
+      border-radius: 6px;
+      border: none;
+    }
+    #loginBtn {
+      background-color: #00bcd4;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      width: 100%;
+      margin-top: 10px;
+    }
+    #loginBtn:hover {
+      background-color: #008c9e;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="typing-text" id="typingText">Welcome to Mohit Saxena's Portal</div>
+
+    <button id="continueBtn" onclick="showLogin()">Continue to Login</button>
+
+    <div class="login-box" id="loginBox">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <button id="loginBtn" onclick="login()">Login</button>
+    </div>
+  </div>
+
+  <script>
+    // Show button after typing animation
+    setTimeout(() => {
+      document.getElementById("continueBtn").style.display = "block";
+    }, 3200);
+
+    function showLogin() {
+      // Voice
+      const msg = new SpeechSynthesisUtterance("Welcome to Mohit Saxena's Portal");
+      const voice = speechSynthesis.getVoices().find(v =>
+        v.name.toLowerCase().includes("female") ||
+        v.name.toLowerCase().includes("zira") ||
+        v.name.toLowerCase().includes("google")
+      );
+      if (voice) msg.voice = voice;
+      speechSynthesis.speak(msg);
+
+      document.getElementById("continueBtn").style.display = "none";
+      document.getElementById("loginBox").style.display = "block";
+    }
+
+    function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (username === "admin" && password === "1234") {
+        alert("✅ लॉगिन सफल रहा! Redirect कर रहे हैं...");
+        window.open("https://sites.google.com/view/mohitkumar6355?usp=sharing", "_blank");
+
+      } else {
+        alert("❌ Username या Password गलत है, कृपया फिर से कोशिश करें।");
+      }
+    }
+
+    window.speechSynthesis.onvoiceschanged = () => {};
+  </script>
+
+</body>
+</html>
