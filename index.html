@@ -86,7 +86,7 @@
   </div>
 
   <script>
-    // Typing effect
+    // Typing Effect (Fast and Real-time)
     let fullText = "Welcome to Mohit Saxena's Portal";
     let i = 0;
     const typingText = document.getElementById("typingText");
@@ -95,20 +95,20 @@
       if (i < fullText.length) {
         typingText.textContent += fullText.charAt(i);
         i++;
-        setTimeout(typeEffect, 40); // faster
+        setTimeout(typeEffect, 40); // Fast typing speed
       } else {
         document.getElementById("continueBtn").style.display = "block";
       }
     }
     typeEffect();
 
-    // preload voices for instant voice
+    // Preload Voices for No Delay
     function preloadVoices() {
       window.speechSynthesis.getVoices();
     }
     preloadVoices();
 
-    // show login form with voice
+    // Show Login + Play Voice
     function showLogin() {
       const msg = new SpeechSynthesisUtterance("Welcome to Mohit Saxena's Portal");
       const voices = speechSynthesis.getVoices();
@@ -124,7 +124,7 @@
       document.getElementById("loginBox").style.display = "block";
     }
 
-    // login function
+    // Login Check
     function login() {
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value.trim();
